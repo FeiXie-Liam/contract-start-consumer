@@ -1,42 +1,42 @@
 package com.thoughtworks.contract.consumer;
 
-import com.thoughtworks.contract.consumer.entity.Goods;
 import com.thoughtworks.contract.consumer.entity.Product;
-import com.thoughtworks.contract.consumer.service.GoodsService;
 import com.thoughtworks.contract.consumer.service.ProductService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @Author yywei
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ConsumerApplication.class)
-//@AutoConfigureStubRunner(ids = "com.contract.test:provider:+:stubs:9999"
-//        , repositoryRoot = "http://ec2-54-222-235-15.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-snapshots/")
-@AutoConfigureStubRunner
+@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.REMOTE)
+@ActiveProfiles("test")
 public class ConsumerTest {
 
     @Autowired
     ProductService productService;
-    @Autowired
-    GoodsService goodsService;
 
     @Test
-    public void test_get_product() {
-//        Product product = productService.getProduct("http://localhost:9999/product/1");
-//
-//        Assert.assertEquals("","");
-    }
+    public void should_return_all_products() {
+        //given
 
-    @Test
-    public void test_get_goods(){
-//        Goods goods = goodsService.getGoods("http://localhost:9999/goods/1");
-//        Assert.assertEquals("","");
+        //when
+        List<Product> actual = productService.getAll();
+        //then
+        assertThat(actual.size()).isEqualTo(3L);
+        assertThat(actual.get(0).getName()).isEqualTo("苹果");
+        assertThat(actual.get(1).getName()).isEqualTo("笔记本电脑");
+        assertThat(actual.get(2).getName()).isEqualTo("电视机");
     }
 }

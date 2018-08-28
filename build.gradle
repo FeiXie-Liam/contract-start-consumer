@@ -31,9 +31,9 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok:1.18.0')
     compile('org.springframework.cloud:spring-cloud-starter-openfeign')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile ('org.springframework.cloud:spring-cloud-starter-contract-stub-runner:1.0.3.RELEASE')
-    testCompile ('org.springframework.cloud:spring-cloud-contract-wiremock:1.0.3.RELEASE')
+    testCompile ('org.springframework.cloud:spring-cloud-starter-contract-stub-runner')
 }
 dependencyManagement {
     imports {

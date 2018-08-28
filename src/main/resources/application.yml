@@ -1,3 +1,7 @@
-stubrunner:
-  ids: com.contract.test:provider:+:stubs:9999
-  repository-root: http://ec2-54-222-235-15.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-snapshots/
+hlp:
+  product-server:
+    url: http://localhost:8090
+
+product-server:
+  ribbon:
+    listOfServers: localhost:8090
