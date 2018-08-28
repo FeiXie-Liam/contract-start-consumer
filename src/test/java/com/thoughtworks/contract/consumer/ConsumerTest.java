@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ConsumerApplication.class)
-@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.REMOTE)
+@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.LOCAL)
 @ActiveProfiles("test")
 public class ConsumerTest {
 
